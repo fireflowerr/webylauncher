@@ -1,0 +1,9 @@
+# exclude build directory
+/build/**
+
+# excludle js files except prettier
+*.js
+!/.prettierrc.js
+
+# exclude node_modules 
+/node_modules/**
