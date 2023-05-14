@@ -1,0 +1,10 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2022",
+    "esModuleInterop": true,
+    "lib": ["dom"],
+    "jsx": "react-jsx"
+  }
+}

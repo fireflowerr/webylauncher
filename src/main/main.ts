@@ -27,7 +27,7 @@ app.on('ready', () => {
     },
   });
 
-  win.loadFile(join(__dirname, '../assets/index.html'));
+  win.loadFile(join(__dirname, '../../assets/index.html'));
   win.webContents.openDevTools();
 });
 

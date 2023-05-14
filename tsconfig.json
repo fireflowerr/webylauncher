@@ -7,11 +7,12 @@
     "jsx": "react-jsx",
     "target": "es2022",
     "module": "CommonJS",
+    "esModuleInterop": true,
   },
   "include": [
-    "src/**/*.ts",
+    "src/**/*.ts", // we don't have to compile render twice but doing so gives ide support
     "src/**/*.tsx",
     "test/**/*.ts",
   ],
-  "exclude": ["node_modules/**"]
+  "exclude": ["node_modules/**"] 
 }
