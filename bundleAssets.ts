@@ -2,7 +2,15 @@
  * Script executes equivalent cp -r ./assets ./build
  */
 
-import {PathLike, copyFileSync, statSync, rmSync, existsSync, mkdirSync, readdirSync} from 'fs';
+import {
+  PathLike,
+  copyFileSync,
+  statSync,
+  rmSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+} from 'fs';
 import {basename, join} from 'path';
 
 const assetsPath = join(__dirname, 'assets');
@@ -10,7 +18,7 @@ const buildPath = join(__dirname, 'build');
 
 /**
  * Checks if path is a directory.
- * 
+ *
  * @param path to check
  * @returns true if directory
  */
@@ -21,7 +29,7 @@ const isDirectory = (path: PathLike): boolean => {
 
 /**
  * cp -r source target
- * 
+ *
  * @param source to copy
  * @param target destination
  */

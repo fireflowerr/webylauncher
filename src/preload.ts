@@ -3,10 +3,10 @@ import {PathLike} from 'fs';
 
 // define the api between back and front end
 contextBridge.exposeInMainWorld('api', {
-  // recieve list of all executables on PATH
-  requstPathExecutables: (): Promise<PathLike[]> =>
+  // receive list of all executables on PATH
+  requestPathExecutables: (): Promise<PathLike[]> =>
     new Promise(resolve => {
-      ipcRenderer.once('RECIEVE_EXECUTABLES', (event, executables) => {
+      ipcRenderer.once('RECEIVE_EXECUTABLES', (event, executables) => {
         resolve(executables);
       });
       ipcRenderer.send('REQUEST_EXECUTABLES');

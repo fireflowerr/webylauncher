@@ -93,20 +93,20 @@ const getPathExecutables = async (): Promise<PathLike[]> => {
         const filePath = join(path, fileName);
 
         // let these leaf jobs run side by side instead of waiting sequentially
-        const stabJob = (async () => {
+        const statJob = (async () => {
           if (await isExecutable(filePath)) {
             executables.push(filePath);
           }
         })();
-        statJobs.push(stabJob);
+        statJobs.push(statJob);
       }
     } catch (e) {
-      const stabJob = (async () => {
+      const statJob = (async () => {
         if (await isExecutable(path)) {
           executables.push(path);
         }
       })();
-      statJobs.push(stabJob);
+      statJobs.push(statJob);
     }
   }
 
@@ -116,5 +116,5 @@ const getPathExecutables = async (): Promise<PathLike[]> => {
 
 // When executables are requested, respond with a list of all executables
 ipcMain.on('REQUEST_EXECUTABLES', async () => {
-  win?.webContents.send('RECIEVE_EXECUTABLES', await getPathExecutables());
+  win?.webContents.send('RECEIVE_EXECUTABLES', await getPathExecutables());
 });
