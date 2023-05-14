@@ -10,7 +10,7 @@ import {constants, readdir, access} from 'fs/promises';
 const isWin = platform === 'win32';
 
 /**
- * The seperator for multiple paths in an envrironment variable
+ * The separator for multiple paths in an environment variable
  */
 const envPathSep = isWin ? ';' : ':';
 

@@ -40,7 +40,10 @@ const copyFileRecursive = (source: PathLike, target: PathLike): void => {
   }
 
   if (isDirectory(source)) {
-    mkdirSync(dest);
+    if (!existsSync(dest)) {
+      mkdirSync(dest);
+    }
+   
     for (const subPath of readdirSync(source)) {
       copyFileRecursive(join(source.toString(), subPath), dest);
     }

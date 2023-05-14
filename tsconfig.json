@@ -3,10 +3,14 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "lib": ["dom"]
+    "lib": ["dom"],
+    "jsx": "react-jsx",
+    "target": "es2022",
+    "module": "CommonJS",
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.tsx",
     "test/**/*.ts",
   ],
   "exclude": ["node_modules/**"]
