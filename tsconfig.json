@@ -10,8 +10,8 @@
     "esModuleInterop": true,
   },
   "include": [
-    "src/**/*.ts", // we don't have to compile render twice but doing so gives ide support
-    "src/**/*.tsx",
+    "src/**/*.ts", 
+    "src/**/*.tsx", // we don't have to compile render twice but doing so gives ide support
     "test/**/*.ts",
   ],
   "exclude": ["node_modules/**"] 

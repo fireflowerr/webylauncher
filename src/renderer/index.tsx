@@ -9,4 +9,4 @@ if (!appDiv) {
 }
 
 const root = createRoot(appDiv);
-root.render(<App/>);
+root.render(<App />);

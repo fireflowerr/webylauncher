@@ -6,5 +6,8 @@
     "test/**/*.ts",
     "bundleAssets.ts"
     ]
-  }]
+  }], 
+  "rules": {
+    "node/no-unpublished-import": 0
+  }
 }
