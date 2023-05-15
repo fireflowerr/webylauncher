@@ -4,4 +4,7 @@ declare global {
   interface Window {
     api: WebylauncherApi;
   }
+
+  const REACT_EXTENSION: string | undefined;
+  const REDUX_EXTENSION: string | undefined;
 }

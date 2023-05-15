@@ -11,7 +11,6 @@ type TypedStore = typeof store & {
 const typedStore: TypedStore = store;
 
 export const App: React.FC = () => {
-  console.log('lmao');
   return (
     <Provider store={typedStore}>
       <button type="button" onClick={() => typedStore.dispatch(fetchPathExe())}>

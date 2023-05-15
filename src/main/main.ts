@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain} from 'electron';
+import {app, session, BrowserWindow, ipcMain} from 'electron';
 import {env, platform} from 'process';
 import {join, extname} from 'path';
 import {PathLike} from 'fs';
@@ -17,7 +17,21 @@ const envPathSep = isWin ? ';' : ':';
 // keep a reference to the window to avoid garbage collection
 let win: BrowserWindow | undefined;
 
-app.on('ready', () => {
+app.on('ready', async () => {
+  if (typeof REACT_EXTENSION === 'string') {
+    await session.defaultSession.loadExtension(REACT_EXTENSION, {
+      allowFileAccess: true,
+    });
+  }
+
+  if (typeof REDUX_EXTENSION === 'string') {
+    await session.defaultSession.loadExtension(REDUX_EXTENSION, {
+      allowFileAccess: true,
+    });
+  }
+
+  await new Promise(resolve => setTimeout(resolve, 10000));
+
   win = new BrowserWindow({
     width: 800,
     height: 600,
