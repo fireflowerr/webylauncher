@@ -10,11 +10,11 @@
     "clean": "gts clean",
     "compileMain": "tsc && tsc ./bundleAssets.ts && node ./bundleAssets.js",
     "compileRender": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack",
-    "compileRender:dev": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack --config ./webpack.dev.ts",
+    "compileRender:dev": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack --config ./webpack.userDev.ts",
     "compile": "npm run compileMain && npm run compileRender",
     "compile:dev": "npm run compileMain && npm run compileRender:dev",
     "start": "electron ./build/src/main/main.js",
-    "watch": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack serve --config ./webpack.dev.ts"
+    "watch": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack serve --config ./webpack.userDev.ts"
   },
   "engines": {
     "node": ">= 18.13.0"

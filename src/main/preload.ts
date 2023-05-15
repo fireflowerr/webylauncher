@@ -1,8 +1,7 @@
 import {ipcRenderer, contextBridge} from 'electron';
-import {PathLike} from 'fs';
 
 export type WebylauncherApi = {
-  requestPathExecutables: () => Promise<string[]>
+  requestPathExecutables: () => Promise<string[]>;
 };
 
 // define the api between back and front end
