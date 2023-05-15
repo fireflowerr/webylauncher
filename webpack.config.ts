@@ -4,6 +4,7 @@ import {join} from 'path';
 const config: webpack.Configuration = {
   mode: 'production',
   entry: join(__dirname, 'src/renderer/index.tsx'),
+  devtool: 'inline-source-map',
   output: {
     path: join(__dirname, 'build/src/renderer'),
     filename: 'webylauncher.bundle.js',
@@ -21,6 +22,9 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  optimization: {
+    minimize: false,
+  }
 };
 
 export default config;

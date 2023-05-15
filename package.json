@@ -8,8 +8,13 @@
     "lint": "gts lint",
     "lint:fix": "gts fix",
     "clean": "gts clean",
-    "compile": "webpack && tsc && tsc ./bundleAssets.ts && node ./bundleAssets.js && cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\"",
-    "start": "npm run compile && electron ./build/src/main/main.js"
+    "compileMain": "tsc && tsc ./bundleAssets.ts && node ./bundleAssets.js",
+    "compileRender": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack",
+    "compileRender:dev": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack --config ./webpack.dev.ts",
+    "compile": "npm run compileMain && npm run compileRender",
+    "compile:dev": "npm run compileMain && npm run compileRender:dev",
+    "start": "electron ./build/src/main/main.js",
+    "watch": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack serve --config ./webpack.dev.ts"
   },
   "engines": {
     "node": ">= 18.13.0"
@@ -22,6 +27,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^14.18.47",
+    "@types/react-redux": "^7.1.25",
+    "@types/redux": "^3.6.0",
+    "@types/redux-thunk": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
     "cross-env": "^7.0.3",
@@ -31,13 +39,18 @@
     "ts-node": "^10.9.1",
     "typescript": "~4.7.0",
     "webpack": "^5.82.1",
-    "webpack-cli": "^5.1.1"
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "electron": "^24.3.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2"
   }
 }
