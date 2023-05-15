@@ -7,3 +7,6 @@
 
 # exclude node_modules 
 /node_modules/**
+
+# exclude webpack user dev  config
+webpack.userDev.ts
