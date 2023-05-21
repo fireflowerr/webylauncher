@@ -8,3 +8,4 @@ declare global {
   const REACT_EXTENSION: string | undefined;
   const REDUX_EXTENSION: string | undefined;
 }
+

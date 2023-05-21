@@ -1,6 +1,6 @@
 import {app, session, BrowserWindow, ipcMain} from 'electron';
 import {env, platform} from 'process';
-import {join, extname} from 'path';
+import {join, extname, sep} from 'path';
 import {PathLike} from 'fs';
 import {constants, readdir, access} from 'fs/promises';
 
@@ -131,3 +131,7 @@ const getPathExecutables = async (): Promise<PathLike[]> => {
 ipcMain.on('REQUEST_EXECUTABLES', async () => {
   win?.webContents.send('RECEIVE_EXECUTABLES', await getPathExecutables());
 });
+
+ipcMain.on('REQUEST_PATH_SEP', () => {
+  win?.webContents.send('RECEIVE_PATH_SEP', sep);
+})
