@@ -3,6 +3,7 @@ import {ipcRenderer, contextBridge} from 'electron';
 export type WebylauncherApi = {
   requestPathExecutables: () => Promise<string[]>;
   requestPathSep: () => Promise<string>;
+  launchExecutable: (path: string) => void;
 };
 
 // define the api between back and front end
@@ -23,4 +24,7 @@ contextBridge.exposeInMainWorld('api', {
       });
       ipcRenderer.send('REQUEST_PATH_SEP');
     }),
+  launchExecutable: (path: string) => {
+    ipcRenderer.send('LAUNCH_EXECUTABLE', path);
+  },
 });

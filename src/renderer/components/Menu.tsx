@@ -30,6 +30,10 @@ export const Menu: React.FC = () => {
     dispatch(fetchPathSep());
   }, []);
 
+  const createOnClick = (path: string) => (): void => {
+    window.api.launchExecutable(path);
+  };
+
   return (
     <div>
       <input
@@ -43,8 +47,13 @@ export const Menu: React.FC = () => {
         }}
       />
       <ol>
-        {searchState.results.map(({basename}, index) => (
-          <li key={`${searchState.query}-${index}`}>{basename}</li>
+        {searchState.results.map(({basename, path}, index) => (
+          <li
+            key={`${searchState.query}-${index}`}
+            onClick={createOnClick(path)}
+          >
+            {basename}
+          </li>
         ))}
       </ol>
     </div>

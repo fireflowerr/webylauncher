@@ -3,6 +3,7 @@ import {env, platform} from 'process';
 import {join, extname, sep, delimiter} from 'path';
 import {PathLike} from 'fs';
 import {constants, readdir, access} from 'fs/promises';
+import {spawn} from 'child_process';
 
 /**
  * True if the platform is windows
@@ -140,4 +141,10 @@ ipcMain.on('REQUEST_EXECUTABLES', async () => {
 
 ipcMain.on('REQUEST_PATH_SEP', () => {
   win?.webContents.send('RECEIVE_PATH_SEP', sep);
+});
+
+ipcMain.on('LAUNCH_EXECUTABLE', async (event, path: string) => {
+  spawn(path, {
+    detached: true,
+  });
 });
