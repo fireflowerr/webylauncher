@@ -1,11 +1,11 @@
-import { ThunkAction } from "redux-thunk";
-import { AppState } from "../../appState";
-import { AnyAction } from "redux";
+import {ThunkAction} from 'redux-thunk';
+import {AppState} from '../../appState';
+import {AnyAction} from 'redux';
 
 export enum PathSepActionType {
   FETCH_PATH_SEP = 'systemInfo/fetchPathSep',
   SET_PATH_SEP = 'systemInfo/setPathSep',
-  SET_PATH_SEP_ERROR = 'systemInfo/setPathSepError'
+  SET_PATH_SEP_ERROR = 'systemInfo/setPathSepError',
 }
 
 export const fetchPathSep = (): ThunkAction<
@@ -14,7 +14,7 @@ export const fetchPathSep = (): ThunkAction<
   unknown,
   AnyAction
 > => {
-  return async (dispatch) => {
+  return async dispatch => {
     dispatch({type: PathSepActionType.FETCH_PATH_SEP});
     try {
       const pathSep = await window.api.requestPathSep();
@@ -25,5 +25,5 @@ export const fetchPathSep = (): ThunkAction<
       dispatch({type: PathSepActionType.SET_PATH_SEP_ERROR});
       return '';
     }
-  }
+  };
 };

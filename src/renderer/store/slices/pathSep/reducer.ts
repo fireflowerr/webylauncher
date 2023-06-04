@@ -1,5 +1,5 @@
 import {Action} from '../../defs';
-import { PathSepActionType } from './actions';
+import {PathSepActionType} from './actions';
 
 export type PathSep = {
   fetching: boolean;
@@ -13,9 +13,12 @@ const PATH_SEP_DEFAULT = {
   pathSep: '',
 };
 
-export const pathSep = (state: PathSep = PATH_SEP_DEFAULT, action: Action<PathSepActionType>): PathSep  => {
+export const pathSep = (
+  state: PathSep = PATH_SEP_DEFAULT,
+  action: Action<PathSepActionType>
+): PathSep => {
   switch (action.type) {
-    case PathSepActionType.FETCH_PATH_SEP: 
+    case PathSepActionType.FETCH_PATH_SEP:
       return {...PATH_SEP_DEFAULT, fetching: true};
     case PathSepActionType.SET_PATH_SEP:
       return {...state, pathSep: action.value as string};
@@ -24,5 +27,4 @@ export const pathSep = (state: PathSep = PATH_SEP_DEFAULT, action: Action<PathSe
     default:
       return state;
   }
-}
-
+};

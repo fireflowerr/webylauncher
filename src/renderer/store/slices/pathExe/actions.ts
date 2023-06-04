@@ -1,6 +1,6 @@
-import { ThunkAction } from "redux-thunk";
-import { AppState } from "../../appState";
-import { AnyAction } from "redux";
+import {ThunkAction} from 'redux-thunk';
+import {AppState} from '../../appState';
+import {AnyAction} from 'redux';
 
 export enum PathExeActionType {
   FETCH_PATH_EXE = 'pathExe/fetchPathExe',

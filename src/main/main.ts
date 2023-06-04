@@ -1,6 +1,6 @@
 import {app, session, BrowserWindow, ipcMain} from 'electron';
 import {env, platform} from 'process';
-import {join, extname, sep} from 'path';
+import {join, extname, sep, delimiter} from 'path';
 import {PathLike} from 'fs';
 import {constants, readdir, access} from 'fs/promises';
 
@@ -12,7 +12,7 @@ const isWin = platform === 'win32';
 /**
  * The separator for multiple paths in an environment variable
  */
-const envPathSep = isWin ? ';' : ':';
+const envPathSep = delimiter;
 
 // keep a reference to the window to avoid garbage collection
 let win: BrowserWindow | undefined;
@@ -127,11 +127,17 @@ const getPathExecutables = async (): Promise<PathLike[]> => {
   return executables;
 };
 
+const RECEIVE_EXECUTABLES_DEBOUNCE_MS = 800;
+let receiveExecutablesDebounce: NodeJS.Timeout | undefined;
+
 // When executables are requested, respond with a list of all executables
 ipcMain.on('REQUEST_EXECUTABLES', async () => {
-  win?.webContents.send('RECEIVE_EXECUTABLES', await getPathExecutables());
+  clearTimeout(receiveExecutablesDebounce);
+  receiveExecutablesDebounce = setTimeout(async () => {
+    win?.webContents.send('RECEIVE_EXECUTABLES', await getPathExecutables());
+  }, RECEIVE_EXECUTABLES_DEBOUNCE_MS);
 });
 
 ipcMain.on('REQUEST_PATH_SEP', () => {
   win?.webContents.send('RECEIVE_PATH_SEP', sep);
-})
+});

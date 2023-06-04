@@ -1,8 +1,14 @@
-import { AnyAction, applyMiddleware, combineReducers, compose, createStore } from "redux";
-import { pathExe } from "./slices/pathExe/reducer";
-import { pathSep } from "./slices/pathSep/reducer";
-import thunk, { ThunkDispatch } from "redux-thunk";
-import { AppState } from "./appState";
+import {
+  AnyAction,
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore,
+} from 'redux';
+import {pathExe} from './slices/pathExe/reducer';
+import {pathSep} from './slices/pathSep/reducer';
+import thunk, {ThunkDispatch} from 'redux-thunk';
+import {AppState} from './appState';
 
 const composeEnhancers =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,5 @@
-import { Action } from "../../defs";
-import { PathExeActionType } from "./actions";
+import {Action} from '../../defs';
+import {PathExeActionType} from './actions';
 
 export type PathExe = {
   fetching: boolean;
@@ -13,7 +13,10 @@ const PATH_EXE_DEFAULT: PathExe = {
   executables: [],
 };
 
-export const pathExe = (state: PathExe = PATH_EXE_DEFAULT, action: Action<PathExeActionType>): PathExe => {
+export const pathExe = (
+  state: PathExe = PATH_EXE_DEFAULT,
+  action: Action<PathExeActionType>
+): PathExe => {
   switch (action.type) {
     case PathExeActionType.FETCH_PATH_EXE:
       return {...PATH_EXE_DEFAULT, fetching: true};

@@ -16,8 +16,8 @@ contextBridge.exposeInMainWorld('api', {
       });
       ipcRenderer.send('REQUEST_EXECUTABLES');
     }),
-  requestPathSep: () => 
-    new Promise((resolve) => {
+  requestPathSep: () =>
+    new Promise(resolve => {
       ipcRenderer.once('RECEIVE_PATH_SEP', (event, pathSep) => {
         resolve(pathSep);
       });
