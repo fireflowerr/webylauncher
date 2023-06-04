@@ -5,6 +5,11 @@ import {useDispatch} from '../hooks/useDispatch';
 import {fetchPathSep} from '../store/slices/pathSep/actions';
 import {fetchPathExe} from '../store/slices/pathExe/actions';
 
+type MenuItem = {
+  path: string;
+  basename: string;
+};
+
 export const Menu: React.FC = () => {
   const executablePaths = useSelector(
     (state: AppState) => state.pathExe.executables
@@ -17,7 +22,7 @@ export const Menu: React.FC = () => {
     results: [],
   } as {
     query: string;
-    results: string[];
+    results: MenuItem[];
   });
 
   useEffect(() => {
@@ -38,8 +43,8 @@ export const Menu: React.FC = () => {
         }}
       />
       <ol>
-        {searchState.results.map((path, index) => (
-          <li key={`${searchState.query}-${index}`}>${path}</li>
+        {searchState.results.map(({basename}, index) => (
+          <li key={`${searchState.query}-${index}`}>{basename}</li>
         ))}
       </ol>
     </div>
@@ -51,8 +56,12 @@ const findFirstN = (
   collection: string[],
   query: string,
   n: number
-): string[] => {
+): MenuItem[] => {
   return collection
-    .filter(item => item.split(pathSep).slice(-1)[0].startsWith(query))
+    .map(path => {
+      const basename = path.split(pathSep).slice(-1)[0];
+      return {path, basename};
+    })
+    .filter(({basename}) => basename.startsWith(query))
     .slice(0, n);
 };
